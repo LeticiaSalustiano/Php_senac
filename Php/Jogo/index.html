@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./imagens/icon.png" type="image/x-icon">
+    <title>Echoes of Fury</title>
+</head>
+<body>
+    <script>
+        function showAttributes() {
+            var tipo = document.getElementById('tipo').value;
+            var atributos = document.getElementById('atributos');
+            atributos.innerHTML = '';
+
+            if (tipo) {
+                atributos.innerHTML += `
+                    <label for="forca">Força:</label>
+                    <input type="number" max="100" id="forca" name="forca" required><br><br>
+                    <label for="habilidade">Habilidade:</label>
+                    <input type="number" max="100" id="habilidade" name="habilidade" required><br><br>
+                    <label for="inteligencia">Inteligência:</label>
+                    <input type="number" max="100" id="inteligencia" name="inteligencia" required><br><br>
+                `;
+
+                const additionalAttributes = {
+                    'guerreiro': '<label for="armadura">Armadura:</label><input type="number" max="100" id="armadura" name="armadura" required><br><br>',
+                    'mago': '<label for="mana">Mana:</label><input type="number" max="100" id="mana" name="mana" required><br><br>',
+                    'ladrao': '<label for="furtividade">Furtividade:</label><input type="number" max="100" id="furtividade" name="furtividade" required><br><br>',
+                    'ninja': '<label for="agilidade">Agilidade:</label><input type="number" max="100" id="agilidade" name="agilidade" required><br><br>',
+                    'elfo': '<label for="precisao">Precisão:</label><input type="number" max="100" id="precisao" name="precisao" required><br><br>',
+                    'anao': '<label for="resistencia">Resistência:</label><input type="number" max="100" id="resistencia" name="resistencia" required><br><br>',
+                    'heroi': '<label for="carisma">Carisma:</label><input type="number" max="100" id="carisma" name="carisma" required><br><br>',
+                    'arqueiro': '<label for="mira">Mira:</label><input type="number" max="100" id="mira" name="mira" required><br><br>',
+                };
+
+                atributos.innerHTML += additionalAttributes[tipo] || '';
+            }
+        }
+    </script>
+    
+    <div class="container">
+        <h1>Criar Personagem</h1>
+        <form action="criar_personagem.php" method="post" enctype="multipart/form-data">
+            <label for="nome">Nome do Personagem:</label>
+            <input type="text" id="nome" name="nome" required><br><br>
+
+            <label for="tipo">Tipo de Personagem:</label>
+            <select id="tipo" name="tipo" required onchange="showAttributes()">
+                <option value="">Selecione</option>
+                <option value="guerreiro">Guerreiro</option>
+                <option value="mago">Mago</option>
+                <option value="ladrao">Ladrão</option>
+                <option value="ninja">Ninja</option>
+                <option value="elfo">Elfo</option>
+                <option value="anao">Anão</option>
+                <option value="heroi">Herói</option>
+                <option value="arqueiro">Arqueiro</option>
+            </select><br><br>
+
+            <div id="atributos"></div>
+
+            <input type="submit" value="Criar Personagem">
+        </form>
+    </div>
+</body>
+</html>
+
+
+<style>
+   body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background-image: url('./imagens/img_fundo.avif'); 
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+}
+
+.container {
+    background-color: rgba(34, 34, 34, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 20%;
+}
+
+h1 {
+    font-family: 'Papyrus', cursive;
+    color: #FFD700;
+    text-shadow: 2px 2px 5px #000;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Papyrus', cursive;
+}
+
+input[type="text"], input[type="number"], select {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Trebuchet MS', sans-serif;
+    box-shadow: 0 0 5px #000;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Trebuchet MS', sans-serif;
+    box-shadow: 0 0 5px #000;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+</style>
